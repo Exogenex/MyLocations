@@ -35,18 +35,31 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         updateLabels()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TagLocation" {
+            let controller = segue.destination as! LocationDetailsViewController
+            controller.coordinate = location!.coordinate
+            controller.placemark = placemark
+        }
+    }
+    
     // MARK: - Actions
     @IBAction func getLocation() {
         let authStatus = locationManager.authorizationStatus
-        if authStatus == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-            return
-        }
+        if authStatus == .notDetermined { locationManager.requestWhenInUseAuthorization(); return }
         
-        if authStatus == .denied || authStatus == .restricted {
-            showLocationServicesDeniedAlert()
-            return
-        }
+        if authStatus == .denied || authStatus == .restricted { showLocationServicesDeniedAlert(); return }
         
         if updatingLocation { stopLocationManager() }
         else {
@@ -63,9 +76,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("didFailWithError \(error.localizedDescription)")
-        if (error as NSError).code == CLError.locationUnknown.rawValue{
-            return
-        }
+        
+        if (error as NSError).code == CLError.locationUnknown.rawValue{ return }
+        
         lastLocationError = error
         stopLocationManager()
         updateLabels()
@@ -143,18 +156,12 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             tagButton.isHidden = true
             let statusMessage: String
             if let error = lastLocationError as NSError? {
-                if error.domain == kCLErrorDomain && error.code == CLError.denied.rawValue {
-                    statusMessage = "Location Services Disabled"
-                } else {
-                    statusMessage = "Error Getting Location"
-                }
-            } else if !CLLocationManager.locationServicesEnabled() {
-                statusMessage = "Location Services Disabled"
-            } else if updatingLocation {
-                statusMessage = "Searching..."
-            } else {
-                statusMessage = "Tap 'Get My Location' to Start"
+                if error.domain == kCLErrorDomain && error.code == CLError.denied.rawValue { statusMessage = "Location Services Disabled" }
+                else { statusMessage = "Error Getting Location" }
             }
+            else if !CLLocationManager.locationServicesEnabled() { statusMessage = "Location Services Disabled" }
+            else if updatingLocation { statusMessage = "Searching..." }
+            else { statusMessage = "Tap 'Get My Location' to Start" }
             messageLabel.text = statusMessage
         }
         configureGetButton()
@@ -187,11 +194,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func configureGetButton() {
-        if updatingLocation {
-            getButton.setTitle("Stop", for: .normal)
-        } else {
-            getButton.setTitle("Get My Location", for: .normal)
-        }
+        if updatingLocation { getButton.setTitle("Stop", for: .normal) }
+        else { getButton.setTitle("Get My Location", for: .normal) }
     }
     
     func string(from placemark: CLPlacemark) -> String {
