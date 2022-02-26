@@ -124,7 +124,7 @@
         <scene sceneID="VF1-LD-77F">
             <objects>
                 <tableViewController id="bcV-tg-Vpc" customClass="LocationDetailsViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="zLA-vN-A2q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="zLA-vN-A2q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -369,7 +369,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="jba-fD-RRg" kind="unwind" unwindAction="categoryPickerDidPickCategory:" id="TR2-A4-Sbh"/>
+                                    <segue destination="jba-fD-RRg" kind="unwind" identifier="PickedCategory" unwindAction="categoryPickerDidPickCategory:" id="TR2-A4-Sbh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

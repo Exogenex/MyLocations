@@ -34,6 +34,7 @@ class CategoryPickerViewController: UITableViewController {
     }
     
     // MARK: - Navigation
+    //segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PickedCategory" {
             let cell = sender as! UITableViewCell
@@ -42,6 +43,7 @@ class CategoryPickerViewController: UITableViewController {
     }
     
     // MARK: - Table View Delegates
+    //setup all the prototype cells
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return categories.count }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
