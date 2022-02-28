@@ -35,10 +35,25 @@ class LocationDetailsViewController: UITableViewController {
     
     var date = Date()
     
+    var locationToEdit: Location? {
+        didSet {
+            if let location = locationToEdit {
+                descriptionText = location.locationDescription
+                categoryName = location.category
+                date = location.date
+                coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                placemark = location.placemark
+            }
+        }
+    }
+    var descriptionText = ""
+    
     //setup basic label info
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionTextView.text = ""
+        if let location = locationToEdit { title = "Edit Location" }
+        
+        descriptionTextView.text = descriptionText
         categoryLabel.text = categoryName
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
         longitudeLabel.text = String(format: "%.8f", coordinate.longitude)
@@ -65,9 +80,15 @@ class LocationDetailsViewController: UITableViewController {
         guard let mainView = navigationController?.parent?.view
         else { return }
         let hudView = HudView.hud(inView: mainView, animated: true)
-        hudView.text = "Tagged"
         
-        let location = Location(context: managedObjectContext)
+        let location: Location
+        if let temp = locationToEdit {
+            hudView.text = "Updated"
+            location = temp
+        } else {
+            hudView.text = "Tagged"
+            location = Location(context: managedObjectContext)
+        }
         
         location.locationDescription = descriptionTextView.text
         location.category = categoryName
