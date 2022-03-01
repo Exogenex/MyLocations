@@ -569,8 +569,9 @@
         <scene sceneID="P0G-B4-Ptc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UGs-wc-zDX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tag" selectedImage="Tag" id="pnP-dH-tgD"/>
+                    <tabBarItem key="tabBarItem" title="Tag" selectedImage="Tag" id="dpi-DZ-zjL"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gp2-lZ-dHu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

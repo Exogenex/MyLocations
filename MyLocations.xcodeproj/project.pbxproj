@@ -30,8 +30,8 @@
 
 /* Begin PBXFileReference section */
 		7522F1C227CD7083006A5AB7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		7522F1C427CDABC3006A5AB7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = SOURCE_ROOT; };
-		7522F1C627CDB4C6006A5AB7 /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = SOURCE_ROOT; };
+		7522F1C427CDABC3006A5AB7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "MyLocations/UIImage+Resize.swift"; sourceTree = SOURCE_ROOT; };
+		7522F1C627CDB4C6006A5AB7 /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+AddText.swift"; path = "MyLocations/String+AddText.swift"; sourceTree = SOURCE_ROOT; };
 		7522F1C827CDCF98006A5AB7 /* Sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sound; sourceTree = "<group>"; };
 		75E5651327C5AAEA0066386E /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E5651627C5AAEA0066386E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
