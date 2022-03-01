@@ -23,7 +23,14 @@ extension Location {
     @NSManaged public var locationDescription: String
     @NSManaged public var category: String
     @NSManaged public var placemark: CLPlacemark?
-
+    @NSManaged public var photoID: NSNumber?
+    
+    func removePhotoFile() {
+        if hasPhoto {
+            do { try FileManager.default.removeItem(at: photoURL) }
+            catch { print("Error removing file: \(error)") }
+        }
+    }
 }
 
 extension Location : Identifiable {
