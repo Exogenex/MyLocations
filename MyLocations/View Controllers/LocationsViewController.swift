@@ -69,9 +69,31 @@ class LocationsViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int { return fetchedResultsController.sections!.count }
     
-    override func tableView(_ tableView: UITableView,titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int ) -> String? {
         let sectionInfo = fetchedResultsController.sections![section]
-        return sectionInfo.name
+        return sectionInfo.name.uppercased()
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int ) -> UIView? {
+        let labelRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 14, width: 300, height: 14)
+        let label = UILabel(frame: labelRect)
+        label.font = UIFont.boldSystemFont(ofSize: 11)
+        
+        label.text = tableView.dataSource!.tableView!(tableView, titleForHeaderInSection: section)
+        label.textColor = UIColor(white: 1.0, alpha: 0.6)
+        label.backgroundColor = UIColor.clear
+        
+        let separatorRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 0.5, width: tableView.bounds.size.width - 15, height: 0.5)
+        let separator = UIView(frame: separatorRect)
+        separator.backgroundColor = tableView.separatorColor
+            
+        let viewRect = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.sectionHeaderHeight)
+        let view = UIView(frame: viewRect)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.85)
+        view.addSubview(label)
+        view.addSubview(separator)
+            
+        return view
     }
     
     // MARK: - Navigation
